@@ -99,7 +99,7 @@ export async function POST(request: Request) {
           : 'We are sorry you cannot make it, but thank you for letting us know.';
 
         await resend.emails.send({
-          from: 'Isra Khalid Aqiqah <onboarding@resend.dev>',
+          from: 'Isra Khalid Aqiqah <rsvp@israsaqiqah.com>',
           to: email,
           subject: "RSVP Confirmation for Isra Khalid's Aqiqah",
           html: `
