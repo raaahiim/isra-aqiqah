@@ -178,7 +178,7 @@ export default function Home() {
                 </div>
 
                 <p className="mb-4 text-3xl font-semibold tracking-wide text-[#6a3f4c] md:text-5xl">
-                  بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ
+                  بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْم
                 </p>
 
                 <p className="text-sm font-semibold uppercase tracking-[0.35em] text-[#9a6a75]">
