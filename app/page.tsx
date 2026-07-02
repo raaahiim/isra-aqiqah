@@ -103,6 +103,7 @@ export default function Home() {
       attending: formData.get('attending'),
       adults: formData.get('adults'),
       children: formData.get('children'),
+      guestNames: formData.get('guestNames'),
       notes: formData.get('notes'),
     };
 
@@ -290,8 +291,6 @@ export default function Home() {
                 value="Please RSVP with adults and children attending."
               />
             </div>
-
-            
           </div>
 
           <div
@@ -306,6 +305,12 @@ export default function Home() {
               <h2 className="mt-2 font-serif text-4xl text-[#7c4a59]">
                 Will you be joining us?
               </h2>
+
+              <p className="mt-3 text-sm leading-6 text-[#7b5a63]">
+                Once you submit your RSVP, you&apos;ll receive a confirmation
+                email. If it doesn&apos;t appear in your inbox within a few
+                minutes, please check your spam or junk folder just in case.
+              </p>
             </div>
 
             {submitted ? (
@@ -319,8 +324,9 @@ export default function Home() {
                 </h3>
 
                 <p className="mt-3 leading-7 text-[#7b5a63]">
-                  Your RSVP has been received. We look forward to celebrating
-                  with you.
+                  Your RSVP has been received, and a confirmation email has
+                  been sent. Please check your inbox. If you do not see it
+                  within a few minutes, check your spam or junk folder.
                 </p>
               </div>
             ) : (
@@ -415,6 +421,24 @@ export default function Home() {
                       className="w-full rounded-2xl border border-[#e5bdc7] bg-[#fffafb] px-4 py-3 outline-none transition focus:border-[#b98291] focus:ring-4 focus:ring-pink-100"
                     />
                   </div>
+                </div>
+
+                <div>
+                  <label className="mb-2 block text-sm font-semibold text-[#6f4f59]">
+                    Names of everyone attending
+                  </label>
+
+                  <textarea
+                    required
+                    name="guestNames"
+                    rows={4}
+                    placeholder="Please list everyone attending, including yourself. One name per line."
+                    className="w-full resize-none rounded-2xl border border-[#e5bdc7] bg-[#fffafb] px-4 py-3 outline-none transition focus:border-[#b98291] focus:ring-4 focus:ring-pink-100"
+                  />
+
+                  <p className="mt-2 text-xs leading-5 text-[#9a6a75]">
+                    If you are the only one attending, just enter your own name.
+                  </p>
                 </div>
 
                 <div>

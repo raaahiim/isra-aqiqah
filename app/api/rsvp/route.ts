@@ -32,11 +32,12 @@ export async function POST(request: Request) {
     const attending = body.attending === 'yes';
     const adults = Number(body.adults);
     const children = Number(body.children);
+    const guestNames = String(body.guestNames || '').trim();
     const notes = String(body.notes || '').trim();
 
-    if (!fullName || !email || !phone) {
+    if (!fullName || !email || !phone || !guestNames) {
       return NextResponse.json(
-        { error: 'Name, email, and phone are required.' },
+        { error: 'Name, email, phone, and guest names are required.' },
         { status: 400 }
       );
     }
@@ -76,6 +77,7 @@ export async function POST(request: Request) {
       attending,
       adults,
       children,
+      guest_names: guestNames,
       notes: notes || null,
     });
 
@@ -94,6 +96,8 @@ export async function POST(request: Request) {
     if (resend) {
       try {
         const safeName = escapeHtml(fullName);
+        const safeGuestNames = escapeHtml(guestNames).replaceAll('\n', '<br />');
+
         const guestText = attending
           ? `We have recorded your RSVP for ${adults} adult(s) and ${children} child(ren).`
           : 'We are sorry you cannot make it, but thank you for letting us know.';
@@ -127,8 +131,13 @@ export async function POST(request: Request) {
                   <p style="margin: 0;"><strong>Venue:</strong> Medina Activity Center, 1905 S Haggerty Rd, Canton</p>
                 </div>
 
+                <div style="background: #fffafc; border: 1px solid #f0d4db; border-radius: 18px; padding: 18px; margin: 22px 0; color: #5d3b46;">
+                  <p style="margin: 0 0 10px;"><strong>Guest names:</strong></p>
+                  <p style="margin: 0; line-height: 1.7;">${safeGuestNames}</p>
+                </div>
+
                 <p style="color: #9a6a75; font-size: 14px; line-height: 1.6; margin: 0;">
-                  This is an automated confirmation email.
+                  This is an automated confirmation email. If this email landed in spam or junk, please mark it as not spam.
                 </p>
               </div>
             </div>

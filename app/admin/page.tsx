@@ -19,6 +19,7 @@ type Rsvp = {
   attending: boolean;
   adults: number;
   children: number;
+  guest_names: string | null;
   notes: string | null;
   checked_in: boolean;
   checked_in_at: string | null;
@@ -307,7 +308,7 @@ export default function AdminPage() {
           </div>
 
           <div className="overflow-x-auto">
-            <table className="w-full min-w-[950px] text-left text-sm">
+            <table className="w-full min-w-[1100px] text-left text-sm">
               <thead className="bg-[#fff3f5] text-xs uppercase tracking-wider text-[#9a6a75]">
                 <tr>
                   <th className="px-5 py-4">Guest</th>
@@ -315,7 +316,8 @@ export default function AdminPage() {
                   <th className="px-5 py-4">Status</th>
                   <th className="px-5 py-4">Adults</th>
                   <th className="px-5 py-4">Children</th>
-                  <th className="px-5 py-4">Notes</th>
+                  <th className="px-5 py-4">Guest Names</th>
+                  <th className="px-5 py-4">Requests</th>
                   <th className="px-5 py-4">Submitted</th>
                   <th className="px-5 py-4">Check-in</th>
                 </tr>
@@ -348,6 +350,10 @@ export default function AdminPage() {
                     <td className="px-5 py-4">{rsvp.adults}</td>
 
                     <td className="px-5 py-4">{rsvp.children}</td>
+
+                    <td className="max-w-xs whitespace-pre-line px-5 py-4 text-[#7b5a63]">
+                      {rsvp.guest_names || '—'}
+                    </td>
 
                     <td className="max-w-xs px-5 py-4 text-[#7b5a63]">
                       {rsvp.notes || '—'}
@@ -384,7 +390,7 @@ export default function AdminPage() {
                 {rsvps.length === 0 && !isLoading && (
                   <tr>
                     <td
-                      colSpan={8}
+                      colSpan={9}
                       className="px-5 py-12 text-center text-[#7b5a63]"
                     >
                       No RSVPs yet.
@@ -395,7 +401,7 @@ export default function AdminPage() {
                 {isLoading && (
                   <tr>
                     <td
-                      colSpan={8}
+                      colSpan={9}
                       className="px-5 py-12 text-center text-[#7b5a63]"
                     >
                       Loading RSVPs...
